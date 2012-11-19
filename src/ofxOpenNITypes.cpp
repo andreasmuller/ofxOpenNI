@@ -50,7 +50,8 @@ ofxOpenNIUser::ofxOpenNIUser(){
     bForceRestart = false;
     bUseOrientation = false;
     
-    maskPixelFormat = OF_PIXELS_RGBA;
+	//maskPixelFormat = OF_PIXELS_RGBA;
+    maskPixelFormat = OF_PIXELS_MONO;
     
     userPixels = NULL;
     
@@ -269,7 +270,9 @@ bool ofxOpenNIUser::getUseMaskPixels(){
 //--------------------------------------------------------------
 void ofxOpenNIUser::setMaskPixelFormat(ofPixelFormat format){
     maskPixelFormat = format;
-    if(maskPixels.getImageType() != ofGetImageTypeFromGLType(maskPixelFormat)){
+	
+    //if(maskPixels.getImageType() != ofGetImageTypeFromGLType(maskPixelFormat)){
+    if(maskPixels.getImageType() != getOfImageTypeFromOfPixelFormat(maskPixelFormat)){
         maskPixels.allocate(maskPixels.getWidth(), maskPixels.getHeight(), maskPixelFormat);
         if(bUseMaskTexture) maskTexture.allocate(maskPixels.getWidth(), maskPixels.getHeight(), ofGetGLTypeFromPixelFormat(maskPixelFormat));
     }

@@ -200,6 +200,31 @@ enum Limb {
 };
 
 //-----------------------------------------------------------------------
+static inline ofImageType getOfImageTypeFromOfPixelFormat( ofPixelFormat _pixelFormat )
+{
+	
+	switch(_pixelFormat)
+	{
+		case OF_PIXELS_RGB:
+			return OF_IMAGE_COLOR;
+			break;
+		case OF_PIXELS_RGBA:
+		case OF_PIXELS_BGRA:
+			return OF_IMAGE_COLOR_ALPHA;
+			break;
+		case OF_PIXELS_MONO:
+			return OF_IMAGE_GRAYSCALE;
+			break;
+		default:
+			string errorStr = "ofxOpenNIUtils getOfImageTypeFromOfPixelFormat, pixel format not recognised. (" + ofToString( (int)_pixelFormat) + ")";
+			ofLog(OF_LOG_ERROR, errorStr );
+			return;
+			break;
+			
+	}
+}
+
+//-----------------------------------------------------------------------
 static inline void rotationMatrixToQuaternian(ofMatrix3x3 & kRot, ofQuaternion & q){
     // Converted from Ogre's Quaternion::FromRotationMatrix (const Matrix3& kRot)
 

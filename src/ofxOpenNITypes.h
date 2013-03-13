@@ -423,8 +423,9 @@ public:
             maskPixels = other.maskPixels;
             maskTexture = other.maskTexture;
             userPixels = other.userPixels;
-            maskPixelFormat = other.maskPixelFormat;
             
+			maskPixelFormat = other.maskPixelFormat;
+			
             pointCloudDrawSize = other.pointCloudDrawSize;
             pointCloudResolution = other.pointCloudResolution;
             confidenceThreshold = other.confidenceThreshold;
@@ -443,8 +444,6 @@ public:
             XnID = other.XnID;
             
             //clear();
-            
-            //cout << "COPY$$$$$$$$$$$$$$$$$ " << bUseSkeleton << endl;
         }
         
         //return *this;
@@ -504,6 +503,8 @@ private:
             maskPixels = other.maskPixels;
             maskTexture = other.maskTexture;
             userPixels = other.userPixels;
+			
+			maskPixelFormat = other.maskPixelFormat;
             
             pointCloudDrawSize = other.pointCloudDrawSize;
             pointCloudResolution = other.pointCloudResolution;
@@ -521,8 +522,6 @@ private:
             bUseOrientation = other.bUseOrientation;
             
             XnID = other.XnID;
-            
-            //cout << "ASGN$$$$$$$$$$$$$$$$$ " << bUseSkeleton << endl;
         }
         
         return *this;

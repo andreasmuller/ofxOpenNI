@@ -50,7 +50,8 @@ ofxOpenNIUser::ofxOpenNIUser(){
     bForceRestart = false;
     bUseOrientation = false;
     
-    maskPixelFormat = OF_PIXELS_RGBA;
+	//maskPixelFormat = OF_PIXELS_RGBA;
+    maskPixelFormat = OF_PIXELS_MONO;
     
     userPixels = NULL;
     
@@ -269,7 +270,9 @@ bool ofxOpenNIUser::getUseMaskPixels(){
 //--------------------------------------------------------------
 void ofxOpenNIUser::setMaskPixelFormat(ofPixelFormat format){
     maskPixelFormat = format;
-    if(maskPixels.getImageType() != ofGetImageTypeFromGLType(maskPixelFormat)){
+	
+    //if(maskPixels.getImageType() != ofGetImageTypeFromGLType(maskPixelFormat)){
+    if(maskPixels.getImageType() != getOfImageTypeFromOfPixelFormat(maskPixelFormat)){
         maskPixels.allocate(maskPixels.getWidth(), maskPixels.getHeight(), maskPixelFormat);
         if(bUseMaskTexture) maskTexture.allocate(maskPixels.getWidth(), maskPixels.getHeight(), ofGetGLTypeFromPixelFormat(maskPixelFormat));
     }
@@ -479,7 +482,8 @@ ofxOpenNIDepthThreshold::ofxOpenNIDepthThreshold(){
     bUseDepthTexture = false;
     bNewPixels = false;
     bNewPointCloud = false;
-    maskPixelFormat = OF_PIXELS_RGBA;
+    //maskPixelFormat = OF_PIXELS_RGBA;
+    maskPixelFormat = OF_PIXELS_MONO;
 }
 
 //--------------------------------------------------------------
@@ -527,7 +531,8 @@ void ofxOpenNIDepthThreshold::set(int _nearThreshold,
     bUseMaskTexture = _bUseMaskTexture;
     bUseDepthPixels = _bUseDepthPixels;
     bUseDepthTexture = _bUseDepthTexture;
-    maskPixelFormat = OF_PIXELS_RGBA;
+    //maskPixelFormat = OF_PIXELS_RGBA;
+    maskPixelFormat = OF_PIXELS_MONO;
     bNewPixels = false;
     bNewPointCloud = false;
 }
@@ -548,7 +553,8 @@ void ofxOpenNIDepthThreshold::set(ofxOpenNIROI & _roi,
     bUseMaskTexture = _bUseMaskTexture;
     bUseDepthPixels = _bUseDepthPixels;
     bUseDepthTexture = _bUseDepthTexture;
-    maskPixelFormat = OF_PIXELS_RGBA;
+    //maskPixelFormat = OF_PIXELS_RGBA;
+    maskPixelFormat = OF_PIXELS_MONO;
     bNewPixels = false;
     bNewPointCloud = false;
 }
@@ -674,11 +680,21 @@ bool ofxOpenNIDepthThreshold::getUseMaskPixels(){
 
 //--------------------------------------------------------------
 void ofxOpenNIDepthThreshold::setMaskPixelFormat(ofPixelFormat format){
-    maskPixelFormat = format;
+	
+    /*maskPixelFormat = format;
     if(maskPixels.getImageType() != ofGetImageTypeFromGLType(maskPixelFormat)){
         maskPixels.allocate(maskPixels.getWidth(), maskPixels.getHeight(), maskPixelFormat);
         if(bUseMaskTexture) maskTexture.allocate(maskPixels.getWidth(), maskPixels.getHeight(), ofGetGLTypeFromPixelFormat(maskPixelFormat));
+    }*/
+	
+    maskPixelFormat = format;
+	
+    //if(maskPixels.getImageType() != ofGetImageTypeFromGLType(maskPixelFormat)){
+    if(maskPixels.getImageType() != getOfImageTypeFromOfPixelFormat(maskPixelFormat)){
+        maskPixels.allocate(maskPixels.getWidth(), maskPixels.getHeight(), maskPixelFormat);
+        if(bUseMaskTexture) maskTexture.allocate(maskPixels.getWidth(), maskPixels.getHeight(), ofGetGLTypeFromPixelFormat(maskPixelFormat));
     }
+	
 }
 
 //--------------------------------------------------------------
